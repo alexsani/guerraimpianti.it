@@ -153,6 +153,20 @@
     start();
   }
 
+  // Pulsante "Condividi" nativo (telefoni e browser che lo supportano)
+  const shareBtn = document.querySelector('.share-btn--native');
+  if (shareBtn && navigator.share) {
+    shareBtn.hidden = false;
+    shareBtn.addEventListener('click', () => {
+      const canonical = document.querySelector('link[rel="canonical"]');
+      navigator.share({
+        title: document.title,
+        text: 'Guerra Impianti – fotovoltaico, pompe di calore, domotica e allarmi a Reggio Emilia',
+        url: canonical ? canonical.href : location.href
+      }).catch(() => {}); // l'utente ha annullato
+    });
+  }
+
   // Modulo contatti (modalità demo: nessun invio reale)
   const form = document.querySelector('.form');
   const status = form.querySelector('.form__status');
