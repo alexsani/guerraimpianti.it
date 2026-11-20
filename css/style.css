@@ -204,10 +204,11 @@ svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width:
 .slide--allarmi .slide__media img { object-position: 50% 60%; }
 
 /* impianti elettrici: fondo chiaro, la foto sfuma nel bianco */
+/* impianti elettrici: verde scuro del marchio, testi bianchi (diversa dalla slide 1 chiara) */
 .slide--elettrici {
   background:
-    radial-gradient(circle at 5% 100%, rgba(59, 181, 74, .12), transparent 45%),
-    #ffffff;
+    radial-gradient(circle at 0% 100%, rgba(141, 198, 63, .22), transparent 45%),
+    linear-gradient(90deg, #0d3320 0%, #134a2c 100%);
 }
 .hero__card-icon--bolt { color: #f5a623; }
 @media (min-width: 981px) {
