@@ -155,7 +155,7 @@ svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width:
 .slide--fotovoltaico {
   background:
     linear-gradient(90deg, rgba(255,255,255,.95) 0%, rgba(255,255,255,.9) 36%, rgba(255,255,255,.55) 49%, rgba(255,255,255,0) 66%),
-    url("../img/fotovoltaico.jpg") right center / cover no-repeat,
+    url("../img/fotovoltaico-1920.webp") right center / cover no-repeat,
     #cfe3f3;
 }
 .slide--fotovoltaico .hero__card { box-shadow: 0 18px 40px rgba(10, 40, 80, .25); }
@@ -556,7 +556,7 @@ svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width:
   .slide--fotovoltaico {
     background:
       linear-gradient(180deg, rgba(255,255,255,.95) 0%, rgba(255,255,255,.9) 45%, rgba(255,255,255,.15) 75%, rgba(255,255,255,0) 100%),
-      url("../img/fotovoltaico.jpg") 62% bottom / cover no-repeat,
+      url("../img/fotovoltaico-1920.webp") 62% bottom / cover no-repeat,
       #cfe3f3;
   }
   .slide--fotovoltaico .hero__card--main { top: 0; left: 0; }
@@ -634,7 +634,7 @@ svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width:
   .slide--fotovoltaico {
     background:
       linear-gradient(rgba(255,255,255,.85), rgba(255,255,255,.85)),
-      url("../img/fotovoltaico.jpg") 62% center / cover no-repeat,
+      url("../img/fotovoltaico-960.webp") 62% center / cover no-repeat,
       #ffffff;
   }
 

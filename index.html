@@ -18,19 +18,20 @@
   <meta property="og:title" content="Guerra Impianti | Fotovoltaico e Pompe di Calore a Reggio Emilia">
   <meta property="og:description" content="Fotovoltaico con accumulo, pompe di calore, impianti elettrici, domotica e allarmi a Reggio Emilia e provincia. Sopralluogo gratuito.">
   <meta property="og:url" content="https://www.guerraimpianti.it/">
-  <meta property="og:image" content="https://www.guerraimpianti.it/img/fotovoltaico.jpg">
-  <meta property="og:image:width" content="2400">
-  <meta property="og:image:height" content="1351">
+  <meta property="og:image" content="https://www.guerraimpianti.it/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Casa con impianto fotovoltaico sul tetto">
   <meta name="twitter:card" content="summary_large_image">
 
-  <link rel="icon" href="img/logo.png">
+  <link rel="icon" href="img/logo.png" sizes="any">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="img/logo.png">
   <!-- immagine principale della prima slide: la carichiamo subito (migliora la velocità percepita) -->
-  <link rel="preload" as="image" href="img/fotovoltaico.jpg" media="(min-width: 768px)" fetchpriority="high">
+  <link rel="preload" as="image" type="image/webp" href="img/fotovoltaico-1920.webp" media="(min-width: 768px)" fetchpriority="high">
   <!-- font in locale (cartella fonts/): nessuna richiesta a Google Fonts -->
   <link rel="preload" as="font" type="font/woff2" href="fonts/plus-jakarta-sans-latin.woff2" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=7">
+  <link rel="stylesheet" href="css/style.css?v=8">
 
   <!-- Dati strutturati per Google: scheda dell'attività locale -->
   <script type="application/ld+json">
@@ -44,7 +45,7 @@
     "description": "Fotovoltaico con accumulo, pompe di calore e climatizzazione, impianti elettrici, domotica, allarmi e videosorveglianza a Reggio Emilia e provincia.",
     "url": "https://www.guerraimpianti.it/",
     "logo": "https://www.guerraimpianti.it/img/logo.png",
-    "image": "https://www.guerraimpianti.it/img/fotovoltaico.jpg",
+    "image": "https://www.guerraimpianti.it/img/og-image.jpg",
     "telephone": "+39 335 6624997",
     "email": "info@guerraimpianti.it",
     "vatID": "IT02559050352",
@@ -97,7 +98,7 @@
   <header class="header" id="top">
     <div class="container header__inner">
       <a href="#top" class="brand" aria-label="Guerra Impianti – torna su">
-        <img src="img/logo.png" alt="Guerra Impianti – Green House Technology" width="135" height="98">
+        <img src="img/logo.svg" alt="Guerra Impianti – Green House Technology" width="135" height="98">
         <span class="brand__text">
           <strong>Guerra Impianti</strong>
           <small>Green House Technology</small>
@@ -128,7 +129,7 @@
       <div class="slider__track">
 
       <!-- Slide 1: fotovoltaico -->
-      <!-- Sfondo: img/fotovoltaico.jpg (impostato in css/style.css, .slide--fotovoltaico).
+      <!-- Sfondo: img/fotovoltaico-1920.webp / -960.webp (impostato in css/style.css, .slide--fotovoltaico).
            Foto di Watt A Lot su Unsplash (Licenza Unsplash): https://unsplash.com/photos/Ja8t8nJN2I4 -->
       <div class="slide slide--fotovoltaico is-active" role="group" aria-roledescription="slide" aria-label="1 di 4">
       <div class="container hero__inner">
@@ -169,7 +170,7 @@
       <div class="slide slide--dark slide--image slide--elettrici" role="group" aria-roledescription="slide" aria-label="2 di 4" aria-hidden="true">
         <div class="slide__media" aria-hidden="true">
           <!-- Foto Unsplash (Licenza Unsplash): https://unsplash.com/photos/PkHf7BUWbtk -->
-          <img src="img/elettrici.jpg" alt="" width="2400" height="1800" decoding="async" fetchpriority="low">
+          <img src="img/elettrici-1600.webp" srcset="img/elettrici-800.webp 800w, img/elettrici-1600.webp 1600w" sizes="(max-width: 767px) 100vw, 64vw" alt="" width="1600" height="1200" decoding="async" fetchpriority="low">
           <div class="hero__card hero__card--a">
             <span class="dot dot--green"></span> Impianto <strong>a norma</strong>
           </div>
@@ -232,7 +233,7 @@
       <div class="slide slide--dark slide--image slide--allarmi" role="group" aria-roledescription="slide" aria-label="4 di 4" aria-hidden="true">
         <div class="slide__media" aria-hidden="true">
           <!-- Foto Unsplash (Licenza Unsplash): https://unsplash.com/photos/gTWLxJOsCGk -->
-          <img src="img/allarme.jpg" alt="" width="2400" height="1600" decoding="async" fetchpriority="low">
+          <img src="img/allarme-1600.webp" srcset="img/allarme-800.webp 800w, img/allarme-1600.webp 1600w" sizes="(max-width: 767px) 100vw, 64vw" alt="" width="1600" height="1067" decoding="async" fetchpriority="low">
           <div class="hero__card hero__card--a">
             <span class="dot dot--green"></span> Sistema <strong>armato</strong>
           </div>
@@ -369,7 +370,7 @@
         <div class="about__media reveal">
           <!-- TODO: sostituire con una foto del team o di un lavoro, es. <img src="img/team.jpg" alt="..."> -->
           <div class="about__placeholder">
-            <img src="img/logo.png" alt="" width="260">
+            <img src="img/logo.svg" alt="" width="260">
           </div>
         </div>
         <div class="about__content reveal">
@@ -536,7 +537,7 @@
   <footer class="footer">
     <div class="container footer__inner">
       <div class="footer__brand">
-        <img src="img/logo.png" alt="Guerra Impianti – Green House Technology" width="90">
+        <img src="img/logo.svg" alt="Guerra Impianti – Green House Technology" width="90">
         <p>Fotovoltaico, pompe di calore, impianti elettrici, domotica e allarmi.</p>
       </div>
       <nav class="footer__nav" aria-label="Navigazione secondaria">
