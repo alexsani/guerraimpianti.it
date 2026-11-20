@@ -31,7 +31,7 @@
   <link rel="preload" as="image" type="image/webp" href="img/fotovoltaico-1920.webp" media="(min-width: 768px)" fetchpriority="high">
   <!-- font in locale (cartella fonts/): nessuna richiesta a Google Fonts -->
   <link rel="preload" as="font" type="font/woff2" href="fonts/plus-jakarta-sans-latin.woff2" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=14">
+  <link rel="stylesheet" href="css/style.css?v=19">
 
   <!-- Dati strutturati per Google: scheda dell'attività locale -->
   <script type="application/ld+json">
@@ -523,37 +523,58 @@
           e rimuovi l'attributo data-demo.
         -->
         <form class="form reveal" action="#" method="post" data-demo novalidate>
+          <p class="form__hint"><span class="req" aria-hidden="true">*</span> campo obbligatorio · <span class="req" aria-hidden="true">**</span> obbligatorio almeno uno tra telefono ed email</p>
+
+          <label>Nome e cognome <span class="req" aria-hidden="true">*</span>
+            <input type="text" name="nome" autocomplete="name" required aria-describedby="err-nome">
+            <span class="field-error" id="err-nome" hidden>Obbligatorio</span>
+          </label>
+
           <div class="form__row">
-            <label>Nome e cognome
-              <input type="text" name="nome" autocomplete="name" required>
+            <label>Telefono <span class="req" aria-hidden="true">**</span>
+              <input type="tel" name="telefono" autocomplete="tel" inputmode="tel" aria-describedby="err-telefono err-recapito">
+              <span class="field-error" id="err-telefono" hidden></span>
             </label>
-            <label>Telefono
-              <input type="tel" name="telefono" autocomplete="tel" required>
+            <label>Email <span class="req" aria-hidden="true">**</span>
+              <input type="email" name="email" autocomplete="email" aria-describedby="err-email err-recapito">
+              <span class="field-error" id="err-email" hidden></span>
             </label>
           </div>
-          <label>Email
-            <input type="email" name="email" autocomplete="email" required>
+          <p class="field-error field-error--group" id="err-recapito" hidden>Obbligatorio telefono o email</p>
+
+          <label>Messaggio <span class="req" aria-hidden="true">*</span>
+            <textarea name="messaggio" rows="4" placeholder="Descrivi brevemente la tua richiesta" required aria-describedby="err-messaggio"></textarea>
+            <span class="field-error" id="err-messaggio" hidden>Obbligatorio</span>
           </label>
-          <label>Servizio di interesse
-            <select name="servizio">
-              <option>Fotovoltaico e accumulo</option>
-              <option>Climatizzazione e pompe di calore</option>
-              <option>Impianti elettrici</option>
-              <option>Domotica</option>
-              <option>Allarmi e videosorveglianza</option>
-              <option>Antenne TV</option>
-              <option>Altro</option>
-            </select>
+
+          <!-- Verifica anti-spam senza servizi esterni né cookie: domanda generata da js/main.js -->
+          <label class="form__captcha">Verifica anti-spam: quanto fa <strong class="captcha__q">3 + 4</strong>? <span class="req" aria-hidden="true">*</span>
+            <input type="text" name="verifica" inputmode="numeric" autocomplete="off" maxlength="3" required aria-describedby="err-verifica">
+            <span class="field-error" id="err-verifica" hidden>Obbligatorio</span>
           </label>
-          <label>Messaggio
-            <textarea name="messaggio" rows="4" placeholder="Descrivi brevemente la tua richiesta"></textarea>
-          </label>
+          <!-- Campo trappola per i bot: invisibile alle persone, deve restare vuoto (nome compatibile con Formspree) -->
+          <div class="form__hp" aria-hidden="true">
+            <label>Non compilare questo campo <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
+          </div>
+
           <label class="form__check">
-            <input type="checkbox" name="privacy" required>
-            <span>Ho letto e accetto l’<a href="#">informativa privacy</a>.</span>
+            <input type="checkbox" name="privacy" required aria-describedby="err-privacy">
+            <span>Ho letto e accetto l’<a href="privacy.html" target="_blank" rel="noopener">informativa privacy</a>. <span class="req" aria-hidden="true">*</span></span>
           </label>
+          <p class="field-error field-error--check" id="err-privacy" hidden>Obbligatorio</p>
+
           <button type="submit" class="btn btn--primary btn--block">Invia richiesta</button>
           <p class="form__status" role="status" aria-live="polite"></p>
+
+          <!-- Conferma mostrata al posto del modulo dopo l'invio -->
+          <div class="form__success" hidden>
+            <div class="form__success-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+            </div>
+            <h3 tabindex="-1">Grazie per averci contattato!</h3>
+            <p>Abbiamo ricevuto la tua richiesta: ti risponderemo il prima possibile.</p>
+            <button type="button" class="btn btn--ghost btn--sm form__again">Invia un’altra richiesta</button>
+          </div>
         </form>
       </div>
     </section>
@@ -588,7 +609,7 @@
     </div>
     <div class="container footer__bottom">
       <p>© <span id="year"></span> Guerra Impianti di Guerra Andrea · P.IVA 02559050352 · PEC <a href="mailto:info@pec.guerraimpianti.it">info@pec.guerraimpianti.it</a></p>
-      <p><a href="#">Privacy</a> · <a href="#">Cookie</a></p>
+      <p><a href="privacy.html">Privacy</a> · <a href="cookie.html">Cookie</a></p>
     </div>
   </footer>
 
@@ -596,6 +617,6 @@
     <svg viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></svg>
   </a>
 
-  <script src="js/main.js?v=4"></script>
+  <script src="js/main.js?v=8"></script>
 </body>
 </html>

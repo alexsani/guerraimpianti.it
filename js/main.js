@@ -168,27 +168,137 @@
   }
 
   // Modulo contatti (modalità demo: nessun invio reale)
+  // Regole: nome e cognome, almeno un recapito (telefono o email), messaggio,
+  // risposta alla verifica anti-spam e consenso privacy obbligatori.
+  // Gli errori compaiono sotto i campi solo dopo il tentativo di invio
+  // e spariscono appena il campo viene corretto.
   const form = document.querySelector('.form');
-  const status = form.querySelector('.form__status');
-  form.addEventListener('submit', e => {
-    let valid = true;
-    form.querySelectorAll('[required]').forEach(field => {
-      const ok = field.type === 'checkbox' ? field.checked : field.checkValidity();
-      field.classList.toggle('is-invalid', !ok);
-      if (!ok) valid = false;
+  if (form) {
+    const status = form.querySelector('.form__status');
+    const f = name => form.elements[name];
+    const err = id => form.querySelector('#err-' + id);
+    const captchaQ = form.querySelector('.captcha__q');
+    const MIN_SECONDS = 3;          // un umano impiega più di 3 secondi a compilare
+    let captchaAnswer = 7;
+    let openedAt = Date.now();
+    let submitted = false;          // dopo il primo tentativo la validazione diventa "dal vivo"
+
+    const newCaptcha = () => {
+      const a = 1 + Math.floor(Math.random() * 9);
+      const b = 1 + Math.floor(Math.random() * 9);
+      captchaAnswer = a + b;
+      captchaQ.textContent = `${a} + ${b}`;
+      f('verifica').value = '';
+    };
+    newCaptcha();
+
+    const phoneOk = v => /^\+?[\d\s./-]{6,20}$/.test(v) && v.replace(/\D/g, '').length >= 6;
+
+    // mostra/nasconde il messaggio sotto un campo e lo evidenzia in rosso
+    const setError = (fieldName, errId, message) => {
+      const field = f(fieldName), box = err(errId);
+      const bad = !!message;
+      field.classList.toggle('is-invalid', bad);
+      field.setAttribute('aria-invalid', String(bad));
+      if (box) { box.hidden = !bad; if (bad) box.textContent = message; }
+      return !bad;
+    };
+
+    // ogni regola restituisce il messaggio d'errore oppure '' se il campo è valido
+    const checks = {
+      nome: () => setError('nome', 'nome', f('nome').value.trim().length >= 2 ? '' : 'Obbligatorio'),
+      recapito: () => {
+        const tel = f('telefono').value.trim(), email = f('email').value.trim();
+        const groupBox = err('recapito');
+        if (!tel && !email) {
+          setError('telefono', 'telefono', ''); setError('email', 'email', '');
+          f('telefono').classList.add('is-invalid'); f('email').classList.add('is-invalid');
+          f('telefono').setAttribute('aria-invalid', 'true'); f('email').setAttribute('aria-invalid', 'true');
+          groupBox.hidden = false;
+          return false;
+        }
+        groupBox.hidden = true;
+        const okTel = setError('telefono', 'telefono', !tel || phoneOk(tel) ? '' : 'Numero di telefono non valido');
+        const okEmail = setError('email', 'email', !email || f('email').checkValidity() ? '' : 'Indirizzo email non valido');
+        return okTel && okEmail;
+      },
+      messaggio: () => setError('messaggio', 'messaggio', f('messaggio').value.trim().length >= 5 ? '' : 'Obbligatorio'),
+      verifica: () => {
+        const v = f('verifica').value.trim();
+        return setError('verifica', 'verifica', !v ? 'Obbligatorio' : (Number(v) === captchaAnswer ? '' : 'Risposta non corretta'));
+      },
+      privacy: () => setError('privacy', 'privacy', f('privacy').checked ? '' : 'Obbligatorio'),
+    };
+    const fieldToCheck = { nome: 'nome', telefono: 'recapito', email: 'recapito', messaggio: 'messaggio', verifica: 'verifica', privacy: 'privacy' };
+
+    const clearAll = () => {
+      form.querySelectorAll('.is-invalid').forEach(x => { x.classList.remove('is-invalid'); x.removeAttribute('aria-invalid'); });
+      form.querySelectorAll('.field-error').forEach(x => { x.hidden = true; });
+    };
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      submitted = true;
+      const results = Object.values(checks).map(fn => fn());
+      if (results.includes(false)) {
+        status.className = 'form__status err';
+        status.textContent = 'Controlla i campi segnalati.';
+        form.querySelector('.is-invalid')?.focus();
+        return;
+      }
+
+      // Anti-spam silenzioso: campo trappola compilato o invio troppo rapido = bot
+      if (f('_gotcha').value || (Date.now() - openedAt) / 1000 < MIN_SECONDS) {
+        status.className = 'form__status err';
+        status.textContent = 'Invio non riuscito, attendi qualche secondo e riprova.';
+        return;
+      }
+
+      if (form.hasAttribute('data-demo')) {
+        showSuccess();
+      } else {
+        // invio reale al servizio indicato in action (es. Formspree), senza lasciare la pagina
+        const btn = form.querySelector('button[type="submit"]');
+        btn.disabled = true;
+        status.className = 'form__status'; status.textContent = 'Invio in corso…';
+        fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
+          .then(res => { if (!res.ok) throw new Error(res.status); showSuccess(); })
+          .catch(() => {
+            status.className = 'form__status err';
+            status.textContent = 'Invio non riuscito. Riprova o contattaci per telefono o email.';
+          })
+          .finally(() => { btn.disabled = false; });
+      }
     });
-    if (!valid) {
-      e.preventDefault();
-      status.className = 'form__status err';
-      status.textContent = 'Controlla i campi evidenziati.';
-      return;
-    }
-    if (form.hasAttribute('data-demo')) {
-      e.preventDefault();
-      status.className = 'form__status ok';
-      status.textContent = 'Grazie! Ti ricontatteremo al più presto.';
+
+    // Conferma: il modulo lascia il posto a un riquadro "Grazie per averci contattato!"
+    const success = form.querySelector('.form__success');
+    function showSuccess() {
       form.reset();
+      clearAll();
+      status.textContent = ''; status.className = 'form__status';
+      form.classList.add('is-sent');
+      success.hidden = false;
+      success.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+      success.querySelector('h3').focus({ preventScroll: true });
     }
-  });
-  form.addEventListener('input', e => e.target.classList.remove('is-invalid'));
+    form.querySelector('.form__again').addEventListener('click', () => {
+      success.hidden = true;
+      form.classList.remove('is-sent');
+      newCaptcha();
+      submitted = false;
+      openedAt = Date.now();
+      f('nome').focus();
+    });
+
+    // dopo il primo tentativo, ricontrollo il campo mentre l'utente lo corregge
+    const live = e => {
+      if (!submitted) return;
+      const check = fieldToCheck[e.target.name];
+      if (check) checks[check]();
+      if (!form.querySelector('.is-invalid')) { status.textContent = ''; status.className = 'form__status'; }
+    };
+    form.addEventListener('input', live);
+    form.addEventListener('change', live);
+  }
 })();

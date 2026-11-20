@@ -457,6 +457,29 @@ svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width:
 .form__check { display: flex !important; gap: .6rem; align-items: flex-start; font-weight: 500 !important; color: var(--muted); }
 .form__check input { margin-top: .35em; accent-color: var(--green); width: 18px; height: 18px; }
 .form__status { margin: 1rem 0 0; font-weight: 600; text-align: center; min-height: 1.5em; }
+.form .req { color: #d64545; font-weight: 700; }
+.form__hint { margin: 0 0 1.2rem; font-size: .85rem; color: var(--muted); }
+/* conferma di invio: sostituisce i campi del modulo */
+.form.is-sent > :not(.form__success) { display: none !important; }
+.form__success { text-align: center; padding: clamp(1rem, 4vw, 2.5rem) .5rem; }
+.form__success[hidden] { display: none; }
+.form__success-icon {
+  width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 1.2rem;
+  display: grid; place-items: center; color: #fff;
+  background: linear-gradient(135deg, var(--green), var(--lime));
+  box-shadow: 0 10px 24px rgba(59, 181, 74, .35);
+}
+.form__success-icon svg { width: 36px; height: 36px; stroke-width: 3; }
+.form__success h3 { font-size: 1.5rem; margin-bottom: .5rem; outline: none; }
+.form__success p { color: var(--muted); max-width: 34ch; margin: 0 auto 1.5rem; }
+.field-error { display: block; margin-top: .35rem; font-size: .8rem; font-weight: 600; color: #d64545; }
+.field-error[hidden] { display: none; }
+.field-error--group, .field-error--check { margin: -.6rem 0 1rem; }
+.form__captcha strong { color: var(--green-dark); white-space: nowrap; }
+.form__captcha input { max-width: 140px; }
+.form__check input.is-invalid { outline: 2px solid #d64545; outline-offset: 2px; }
+/* campo trappola anti-bot: fuori dallo schermo, non visibile né raggiungibile da tastiera */
+.form__hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .form__status.ok { color: var(--green-dark); }
 .form__status.err { color: #d64545; }
 
@@ -665,6 +688,26 @@ svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width:
   .hero__actions { margin: 1.3rem 0 1.1rem; gap: .6rem; flex-wrap: nowrap; }
   .hero__actions .btn { padding: .75em 1.1em; font-size: .9rem; flex: 1 1 auto; text-align: center; }
   .hero__badges { font-size: .85rem; gap: .35rem 1rem; }
+}
+
+/* ---------- Pagine legali (privacy, cookie) ---------- */
+.legal { padding: clamp(2.5rem, 6vw, 4.5rem) 0 clamp(3rem, 7vw, 5rem); }
+.legal h1 { font-size: clamp(2rem, 4.5vw, 2.8rem); margin-bottom: .3em; }
+.legal h2 { font-size: 1.3rem; margin: 2.2rem 0 .7rem; }
+.legal h3 { font-size: 1.05rem; margin: 1.4rem 0 .5rem; }
+.legal p, .legal li { color: #34443a; }
+.legal ul { padding-left: 1.2rem; margin: 0 0 1em; }
+.legal li { margin: .35rem 0; }
+.legal__meta { color: var(--muted); font-size: .92rem; margin-bottom: 2rem; }
+.legal__highlight { background: var(--bg-alt); border: 1px solid var(--line); border-radius: 14px; padding: 1rem 1.2rem; }
+.legal__table { overflow-x: auto; margin: 0 0 1rem; }
+.legal table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+.legal th, .legal td { text-align: left; padding: .7rem .8rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+.legal th { background: var(--bg-alt); font-weight: 700; }
+.legal-back { white-space: nowrap; }
+.legal-page .footer { padding-top: 0; }
+@media (max-width: 480px) {
+  .legal-page .brand__text { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
