@@ -28,10 +28,9 @@
   <link rel="apple-touch-icon" href="img/logo.png">
   <!-- immagine principale della prima slide: la carichiamo subito (migliora la velocità percepita) -->
   <link rel="preload" as="image" href="img/fotovoltaico.jpg" media="(min-width: 768px)" fetchpriority="high">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=6">
+  <!-- font in locale (cartella fonts/): nessuna richiesta a Google Fonts -->
+  <link rel="preload" as="font" type="font/woff2" href="fonts/plus-jakarta-sans-latin.woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css?v=7">
 
   <!-- Dati strutturati per Google: scheda dell'attività locale -->
   <script type="application/ld+json">
