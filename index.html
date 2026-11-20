@@ -31,7 +31,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=4">
+  <link rel="stylesheet" href="css/style.css?v=5">
 
   <!-- Dati strutturati per Google: scheda dell'attività locale -->
   <script type="application/ld+json">
@@ -131,7 +131,7 @@
       <!-- Slide 1: fotovoltaico -->
       <!-- Sfondo: img/fotovoltaico.jpg (impostato in css/style.css, .slide--fotovoltaico).
            Foto di Watt A Lot su Unsplash (Licenza Unsplash): https://unsplash.com/photos/Ja8t8nJN2I4 -->
-      <div class="slide slide--fotovoltaico is-active" role="group" aria-roledescription="slide" aria-label="1 di 3">
+      <div class="slide slide--fotovoltaico is-active" role="group" aria-roledescription="slide" aria-label="1 di 4">
       <div class="container hero__inner">
         <div class="hero__content">
           <span class="eyebrow">Energia pulita per casa e azienda</span>
@@ -166,8 +166,40 @@
       </div>
       </div>
 
-      <!-- Slide 2: domotica -->
-      <div class="slide slide--dark slide--image slide--domotica" role="group" aria-roledescription="slide" aria-label="2 di 3" aria-hidden="true">
+      <!-- Slide 2: impianti elettrici civili (fondo chiaro, immagine a destra che sfuma sul testo) -->
+      <div class="slide slide--image slide--elettrici" role="group" aria-roledescription="slide" aria-label="2 di 4" aria-hidden="true">
+        <div class="slide__media" aria-hidden="true">
+          <!-- Foto Unsplash (Licenza Unsplash): https://unsplash.com/photos/PkHf7BUWbtk -->
+          <img src="img/elettrici.jpg" alt="" width="2400" height="1800" decoding="async" fetchpriority="low">
+          <div class="hero__card hero__card--a">
+            <span class="dot dot--green"></span> Impianto <strong>a norma</strong>
+          </div>
+          <div class="hero__card hero__card--b">
+            <svg viewBox="0 0 24 24" class="hero__card-icon hero__card-icon--bolt"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>
+            <span>Salvavita <strong>attivo</strong></span>
+          </div>
+        </div>
+
+        <div class="container hero__inner">
+          <div class="hero__content">
+            <span class="eyebrow">Impianti elettrici civili</span>
+            <h2 class="hero__title">Impianti elettrici <span class="accent">sicuri e a norma</span> per la tua casa.</h2>
+            <p class="lead">Nuovi impianti, rifacimenti e adeguamenti con certificazione di conformità. Quadri elettrici, illuminazione LED e predisposizioni per fotovoltaico, wallbox e domotica.</p>
+            <div class="hero__actions">
+              <a href="#contatti" class="btn btn--primary">Richiedi un preventivo</a>
+              <a href="#servizi" class="btn btn--ghost">Scopri i servizi</a>
+            </div>
+            <ul class="hero__badges">
+              <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Certificazione di conformità</li>
+              <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Quadri e salvavita</li>
+              <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Illuminazione LED</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3: domotica -->
+      <div class="slide slide--dark slide--image slide--domotica" role="group" aria-roledescription="slide" aria-label="3 di 4" aria-hidden="true">
         <div class="slide__media" aria-hidden="true">
           <!-- Illustrazione originale: sostituibile con una foto, es. <img src="img/domotica.jpg" alt=""> -->
           <img src="img/domotica.svg" alt="" width="1200" height="900" decoding="async" fetchpriority="low">
@@ -197,8 +229,8 @@
       </div>
       </div>
 
-      <!-- Slide 3: allarmi (immagine a destra che sfuma sul testo) -->
-      <div class="slide slide--dark slide--image slide--allarmi" role="group" aria-roledescription="slide" aria-label="3 di 3" aria-hidden="true">
+      <!-- Slide 4: allarmi (immagine a destra che sfuma sul testo) -->
+      <div class="slide slide--dark slide--image slide--allarmi" role="group" aria-roledescription="slide" aria-label="4 di 4" aria-hidden="true">
         <div class="slide__media" aria-hidden="true">
           <!-- Foto Unsplash (Licenza Unsplash): https://unsplash.com/photos/gTWLxJOsCGk -->
           <img src="img/allarme.jpg" alt="" width="2400" height="1600" decoding="async" fetchpriority="low">

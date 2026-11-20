@@ -203,6 +203,20 @@ svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width:
 }
 .slide--allarmi .slide__media img { object-position: 50% 60%; }
 
+/* impianti elettrici: fondo chiaro, la foto sfuma nel bianco */
+.slide--elettrici {
+  background:
+    radial-gradient(circle at 5% 100%, rgba(59, 181, 74, .12), transparent 45%),
+    #ffffff;
+}
+.hero__card-icon--bolt { color: #f5a623; }
+@media (min-width: 981px) {
+  .slide--elettrici .slide__media img {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.25) 32%, #000 64%);
+            mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.25) 32%, #000 64%);
+  }
+}
+
 /* domotica: blu notte, per distinguerla dal verde scuro degli allarmi */
 .slide--domotica {
   background:
