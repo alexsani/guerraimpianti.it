@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid slice">
+  <!-- Illustrazione segnaposto: sostituire con una foto reale (es. img/allarme.jpg) -->
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0c2a2c"/>
+      <stop offset=".65" stop-color="#0a1c17"/>
+      <stop offset="1" stop-color="#08130f"/>
+    </linearGradient>
+    <radialGradient id="moonGlow" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#e9f5d0" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#e9f5d0" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="beam" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8dc63f" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#8dc63f" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="win" cx=".5" cy=".5" r=".7">
+      <stop offset="0" stop-color="#ffe7a3"/>
+      <stop offset="1" stop-color="#f0b84a"/>
+    </radialGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="18"/></filter>
+  </defs>
+
+  <rect width="1200" height="900" fill="url(#sky)"/>
+
+  <!-- stelle -->
+  <g fill="#ffffff" opacity=".7">
+    <circle cx="420" cy="90" r="2"/><circle cx="560" cy="160" r="1.5"/><circle cx="700" cy="70" r="2"/>
+    <circle cx="880" cy="140" r="1.5"/><circle cx="1050" cy="60" r="2"/><circle cx="1130" cy="200" r="1.5"/>
+    <circle cx="640" cy="250" r="1.2"/><circle cx="980" cy="260" r="1.2"/><circle cx="350" cy="220" r="1.4"/>
+  </g>
+
+  <!-- luna -->
+  <circle cx="960" cy="170" r="140" fill="url(#moonGlow)"/>
+  <circle cx="960" cy="170" r="48" fill="#eef6dc"/>
+  <circle cx="980" cy="158" r="44" fill="#0c2a2c" opacity=".18"/>
+
+  <!-- colline -->
+  <path d="M0 640 C250 590 450 620 650 600 S1000 560 1200 600 V900 H0z" fill="#0d211a"/>
+
+  <!-- casa moderna -->
+  <g>
+    <rect x="430" y="400" width="620" height="300" fill="#16291f"/>
+    <rect x="410" y="384" width="660" height="22" fill="#1f3a2b"/>
+    <rect x="700" y="290" width="350" height="110" fill="#1a3125"/>
+    <rect x="684" y="276" width="382" height="18" fill="#22402f"/>
+
+    <!-- finestre illuminate -->
+    <g filter="url(#blur)" opacity=".55">
+      <rect x="470" y="460" width="150" height="150" fill="#f6c25a"/>
+      <rect x="760" y="320" width="230" height="60" fill="#f6c25a"/>
+    </g>
+    <rect x="470" y="460" width="150" height="150" fill="url(#win)"/>
+    <line x1="545" y1="460" x2="545" y2="610" stroke="#16291f" stroke-width="6"/>
+    <rect x="760" y="320" width="230" height="60" fill="url(#win)"/>
+    <rect x="680" y="450" width="120" height="250" fill="#0f1e16"/>
+    <rect x="690" y="460" width="100" height="240" fill="#1b3427"/>
+    <circle cx="772" cy="580" r="4" fill="#8dc63f"/>
+    <rect x="850" y="460" width="160" height="120" fill="#2a4a37"/>
+    <line x1="930" y1="460" x2="930" y2="580" stroke="#16291f" stroke-width="6"/>
+
+    <!-- fascio della telecamera -->
+    <polygon points="1032,420 760,760 1150,760" fill="url(#beam)"/>
+
+    <!-- telecamera -->
+    <g transform="translate(1030 410) rotate(28)">
+      <rect x="-6" y="-30" width="12" height="30" fill="#d9e3dc"/>
+      <rect x="-50" y="-4" width="80" height="32" rx="8" fill="#eef3ef"/>
+      <rect x="-56" y="2" width="14" height="20" rx="4" fill="#c5d0c8"/>
+      <circle cx="-56" cy="12" r="7" fill="#0f1e16"/>
+      <circle cx="18" cy="6" r="4" fill="#e04848"/>
+    </g>
+
+    <!-- sirena -->
+    <rect x="440" y="420" width="44" height="54" rx="6" fill="#eef3ef"/>
+    <rect x="448" y="428" width="28" height="12" rx="3" fill="#3bb54a"/>
+  </g>
+
+  <!-- prato e siepe -->
+  <path d="M0 700 H1200 V900 H0z" fill="#0b1912"/>
+  <g fill="#132a1d">
+    <circle cx="380" cy="700" r="40"/><circle cx="430" cy="690" r="36"/><circle cx="1100" cy="700" r="44"/><circle cx="1160" cy="688" r="38"/>
+  </g>
+</svg>

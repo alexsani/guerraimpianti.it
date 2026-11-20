@@ -1,0 +1,7 @@
+# strumenti di sviluppo locale (server di anteprima)
+.claude/
+
+# file di sistema
+.DS_Store
+Thumbs.db
+desktop.ini
