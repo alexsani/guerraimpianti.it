@@ -52,22 +52,13 @@
   }, { rootMargin: '-45% 0px -50% 0px' });
   sections.forEach(s => spy.observe(s));
 
-  // Link all'indirizzo: su iPhone/iPad apre Mappe di Apple, su Android il link geo:
-  // fa scegliere l'app di navigazione installata (Google Maps, Waze…).
-  // Su computer resta Google Maps in una nuova scheda.
+  // Link all'indirizzo, sempre in una nuova scheda: su iPhone/iPad punta a Mappe di Apple
+  // (iOS apre l'app), altrove resta Google Maps (su Android si apre l'app Google Maps).
   const mapLink = document.querySelector('.js-map-link');
   if (mapLink) {
-    const address = 'Via Tedeschi 1, 42124 Reggio Emilia RE';
     const ua = navigator.userAgent;
     const isIOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-    const isAndroid = /Android/.test(ua);
-    if (isIOS || isAndroid) {
-      mapLink.href = isIOS
-        ? 'https://maps.apple.com/?q=' + encodeURIComponent(address)
-        : 'geo:0,0?q=' + encodeURIComponent(address);
-      mapLink.removeAttribute('target');
-      mapLink.setAttribute('aria-label', 'Via Tedeschi, 1 - 42124 Reggio Emilia (RE): apri nelle mappe');
-    }
+    if (isIOS) mapLink.href = 'https://maps.apple.com/?q=' + encodeURIComponent('Via Tedeschi 1, 42124 Reggio Emilia RE');
   }
 
   // Indirizzo sempre allineato alla sezione visibile: quando lo scroll si ferma
