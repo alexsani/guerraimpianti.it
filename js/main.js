@@ -52,6 +52,24 @@
   }, { rootMargin: '-45% 0px -50% 0px' });
   sections.forEach(s => spy.observe(s));
 
+  // Link all'indirizzo: su iPhone/iPad apre Mappe di Apple, su Android il link geo:
+  // fa scegliere l'app di navigazione installata (Google Maps, Waze…).
+  // Su computer resta Google Maps in una nuova scheda.
+  const mapLink = document.querySelector('.js-map-link');
+  if (mapLink) {
+    const address = 'Via Tedeschi 1, 42124 Reggio Emilia RE';
+    const ua = navigator.userAgent;
+    const isIOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    const isAndroid = /Android/.test(ua);
+    if (isIOS || isAndroid) {
+      mapLink.href = isIOS
+        ? 'https://maps.apple.com/?q=' + encodeURIComponent(address)
+        : 'geo:0,0?q=' + encodeURIComponent(address);
+      mapLink.removeAttribute('target');
+      mapLink.setAttribute('aria-label', 'Via Tedeschi, 1 - 42124 Reggio Emilia (RE): apri nelle mappe');
+    }
+  }
+
   // Indirizzo sempre allineato alla sezione visibile: quando lo scroll si ferma
   // aggiorniamo l'#ancora (senza aggiungere voci alla cronologia), così ricaricando
   // la pagina si resta dove si era. Sopra la prima sezione l'ancora viene tolta.
