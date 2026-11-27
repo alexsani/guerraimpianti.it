@@ -52,6 +52,25 @@
   }, { rootMargin: '-45% 0px -50% 0px' });
   sections.forEach(s => spy.observe(s));
 
+  // Indirizzo sempre allineato alla sezione visibile: quando lo scroll si ferma
+  // aggiorniamo l'#ancora (senza aggiungere voci alla cronologia), così ricaricando
+  // la pagina si resta dove si era. Sopra la prima sezione l'ancora viene tolta.
+  const hashSections = [...document.querySelectorAll('main section[id]')];
+  let hashTimer;
+  const syncHash = () => {
+    const offset = header.offsetHeight + 80;
+    const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+    let current = null;
+    if (atBottom) current = hashSections[hashSections.length - 1];
+    else hashSections.forEach(s => { if (s.getBoundingClientRect().top <= offset) current = s; });
+    const hash = current ? '#' + current.id : '';
+    if (hash !== location.hash) history.replaceState(null, '', location.pathname + location.search + hash);
+  };
+  window.addEventListener('scroll', () => {
+    clearTimeout(hashTimer);
+    hashTimer = setTimeout(syncHash, 200);
+  }, { passive: true });
+
   // Contatori animati
   const animateCount = el => {
     const target = parseFloat(el.dataset.count);
