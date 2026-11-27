@@ -549,11 +549,11 @@ svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width:
   .intro .slide > .container { flex: 0 1 auto; }
 }
 
-/* tablet in verticale: una colonna sola, quindi niente riquadri nella slide 1
-   (resta la foto di sfondo) e testo in alto nelle slide con immagine in basso */
+/* tablet in verticale: una colonna sola, niente riquadri (resta solo la foto)
+   e testo in alto in tutte le slide, sopra la parte più chiara dello sfondo */
 @media (min-width: 768px) and (max-width: 980px) {
-  .slide--fotovoltaico .hero__visual { display: none; }
-  .intro .slide--image { align-items: flex-start; }
+  .slide--fotovoltaico .hero__visual, .slide__media .hero__card { display: none; }
+  .intro .slide { align-items: flex-start; }
 }
 
 /* Dimensioni e spaziature legate all'altezza della finestra (vh),
